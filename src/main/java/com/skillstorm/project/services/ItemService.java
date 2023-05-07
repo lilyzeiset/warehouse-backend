@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.skillstorm.project.dtos.ItemDto;
+import com.skillstorm.project.exceptions.ExceedMaxCapacityException;
 import com.skillstorm.project.models.Item;
 import com.skillstorm.project.models.Warehouse;
 import com.skillstorm.project.repositories.ItemRepository;
@@ -53,13 +54,20 @@ public class ItemService {
 		Warehouse warehouse = warehouseRepository.findById(itemData.getWarehouseId())
 				.orElseThrow();
 		
-		Item item = new Item(
-				itemData.getId(),
-				itemData.getName(),
-				itemData.getDescription(),
-				warehouse);
+		int currentCapacity = itemRepository.findAllItemsByWarehouseId(warehouse.getId()).size();
 		
-		return itemRepository.save(item).toDto();
+		if (currentCapacity + 1 > warehouse.getMaxCapacity()) {
+			throw new ExceedMaxCapacityException();
+		} else {
+		
+			Item item = new Item(
+					itemData.getId(),
+					itemData.getName(),
+					itemData.getDescription(),
+					warehouse);
+			
+			return itemRepository.save(item).toDto();
+		}
 	}
 	
 	/**
