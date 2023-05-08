@@ -9,11 +9,19 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import com.skillstorm.project.dtos.ExceedMaxCapacityExceptionDto;
 import com.skillstorm.project.exceptions.ExceedMaxCapacityException;
 
-//This class will advise out controllers on specific Exceptions
+/**
+ * Handles exceptions thrown elsewhere in the backend
+ * @author Lily Zeiset
+ *
+ */
 @RestControllerAdvice // sends JSON data of error
 public class GlobalExceptionHandler {
-	// create your own exception classes and monitor for them here
-
+	
+	/**
+	 * Handles ExceedMaxCapacity exception
+	 * @param e The thrown error
+	 * @return Data of the error with status 409 Conflict
+	 */
 	@ResponseStatus(code = HttpStatus.CONFLICT)
 	@ExceptionHandler(ExceedMaxCapacityException.class)
 	public ExceedMaxCapacityExceptionDto handleExceedMaxCapacityException(ExceedMaxCapacityException e) {

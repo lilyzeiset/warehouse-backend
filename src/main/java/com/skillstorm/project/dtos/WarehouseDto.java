@@ -1,5 +1,10 @@
 package com.skillstorm.project.dtos;
 
+/**
+ * Data transfer object for a warehouse
+ * @author Lily Zeiset
+ *
+ */
 public class WarehouseDto {
 
 	private long id;

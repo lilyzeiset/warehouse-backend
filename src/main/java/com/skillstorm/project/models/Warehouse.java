@@ -14,25 +14,40 @@ import com.skillstorm.project.dtos.WarehouseDto;
 
 /**
  * Represents a single warehouse.
- * @author lily
+ * @author Lily Zeiset
  *
  */
 @Entity @Table(name = "warehouse")
 public class Warehouse {
 	
+	/**
+	 * Primary key
+	 */
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "warehouse_id")
 	private long id;
 	
+	/**
+	 * Name of warehouse
+	 */
 	@Column
 	private String name;
 	
+	/**
+	 * Description of warehouse
+	 */
 	@Column
 	private String description;
 	
+	/**
+	 * Address of warehouse
+	 */
 	@Column
 	private String address;
 	
+	/**
+	 * Maximum capacity of warehouse
+	 */
 	@Column(name = "max_capacity")
 	private int maxCapacity;
 

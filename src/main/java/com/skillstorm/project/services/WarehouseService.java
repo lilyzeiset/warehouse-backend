@@ -14,6 +14,11 @@ import com.skillstorm.project.models.Warehouse;
 import com.skillstorm.project.repositories.ItemRepository;
 import com.skillstorm.project.repositories.WarehouseRepository;
 
+/**
+ * Service for warehouse
+ * @author Lily Zeiset
+ *
+ */
 @Service
 @Transactional
 public class WarehouseService {
@@ -37,7 +42,7 @@ public class WarehouseService {
 	
 	/**
 	 * Finds all warehouses
-	 * @return List of warehouses
+	 * @return List of all warehouses
 	 */
 	public List<WarehouseDto> findAllWarehouses() {
 		return warehouseRepository.findAll()
@@ -48,8 +53,8 @@ public class WarehouseService {
 
 	/**
 	 * Creates/updates a warehouse
-	 * @param warehouseData
-	 * @return the new warehouse
+	 * @param warehouseData The data of the new/updated warehouse
+	 * @return The data of the new/updated warehouse
 	 */
 	public WarehouseDto createWarehouse(WarehouseDto warehouseData) {
 		Warehouse warehouse = new Warehouse(

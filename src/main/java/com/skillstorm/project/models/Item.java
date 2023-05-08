@@ -15,8 +15,8 @@ import javax.persistence.Table;
 import com.skillstorm.project.dtos.ItemDto;
 
 /**
- * Represents a unique item
- * @author lily
+ * Represents an item contained in a warehouse
+ * @author Lily Zeiset
  *
  */
 @Entity @Table(name = "item")

@@ -2,6 +2,11 @@ package com.skillstorm.project.dtos;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * Data transfer object for an item
+ * @author Lily Zeiset
+ *
+ */
 public class ItemDto {
 
 	private long id;

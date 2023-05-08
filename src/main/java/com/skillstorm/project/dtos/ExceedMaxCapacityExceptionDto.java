@@ -1,7 +1,15 @@
 package com.skillstorm.project.dtos;
 
+/**
+ * Data transfer object for ExceedMaxCapacity exception
+ * @author Lily Zeiset
+ *
+ */
 public class ExceedMaxCapacityExceptionDto {
 
+	/**
+	 * The error message that will be sent back to the frontend
+	 */
 	private String message;
 
 	public ExceedMaxCapacityExceptionDto() {

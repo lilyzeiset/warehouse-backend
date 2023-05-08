@@ -13,6 +13,11 @@ import com.skillstorm.project.models.Warehouse;
 import com.skillstorm.project.repositories.ItemRepository;
 import com.skillstorm.project.repositories.WarehouseRepository;
 
+/**
+ * Service for item
+ * @author Lily Zeiset
+ *
+ */
 @Service
 @Transactional
 public class ItemService {
@@ -25,8 +30,8 @@ public class ItemService {
 	
 	/**
 	 * Finds an item by its id
-	 * @param id item id
-	 * @return the found item
+	 * @param id The item's id
+	 * @return The found item
 	 */
 	public ItemDto findItemById(long id) {
 		return itemRepository.findById(id)
@@ -36,7 +41,7 @@ public class ItemService {
 	
 	/**
 	 * Finds all items
-	 * @return list of items
+	 * @return List of all items
 	 */
 	public List<ItemDto> findAllItems() {
 		return itemRepository.findAll()
@@ -46,9 +51,9 @@ public class ItemService {
 	}
 	
 	/**
-	 * Creates/updates an item
-	 * @param itemData
-	 * @return the new item
+	 * Creates an item
+	 * @param itemData The data of the new item
+	 * @return The data of the new item
 	 */
 	public ItemDto createItem(ItemDto itemData) {
 		Warehouse warehouse = warehouseRepository.findById(itemData.getWarehouseId())
@@ -71,8 +76,25 @@ public class ItemService {
 	}
 	
 	/**
+	 * Updates an item
+	 * @param itemData The data of the updated item
+	 * @return The data of the updated item
+	 */
+	public ItemDto updateItem(ItemDto itemData) {
+		Warehouse warehouse = warehouseRepository.findById(itemData.getWarehouseId())
+				.orElseThrow();
+		Item item = new Item(
+				itemData.getId(),
+				itemData.getName(),
+				itemData.getDescription(),
+				warehouse);
+		
+		return itemRepository.save(item).toDto();
+	}
+	
+	/**
 	 * Deletes an item
-	 * @param id item id
+	 * @param id The id of the item to be deletd
 	 */
 	public void deleteItem(long id) {
 		itemRepository.deleteById(id);
